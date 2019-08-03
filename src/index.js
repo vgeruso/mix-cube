@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import 'bootstrap/dist/css/bootstrap.css';
+import './css/index.css';
 
 class Board extends React.Component {
     constructor(props) {
@@ -11,7 +13,7 @@ class Board extends React.Component {
     }
 
     movDraw() {
-        const sizeMix = Math.floor(Math.random() * (20 - 10 + 1) + 10);
+        const sizeMix = Math.floor(Math.random() * (25 - 15 + 1) + 15);
         const mix = [];
         let stringMoves = "";
         for(let i = 0; i < sizeMix; i++) {
@@ -25,10 +27,24 @@ class Board extends React.Component {
     }
 
     render () {
+        const mix = () => {
+            if(this.state.mixFinal === "") {
+                return (
+                    <p className="p-mod">"Press 'Mix' to draw the mix sequence"</p>
+                );
+            } else {
+                return (
+                    <p>{this.state.mixFinal}</p>
+                );
+            }
+        };
+
         return (
-            <div>
-                <p>{this.state.mixFinal}</p>
-                <button onClick={() => this.movDraw()}>MIX</button>
+            <div className="card" id="cardMix">
+                <div className="card-body">
+                    <div>{mix()}</div>
+                    <button type="button" className="btn btn-primary btn-lg btn-block" onClick={() => this.movDraw()}>Mix</button>
+                </div>
             </div>
         );
     }
