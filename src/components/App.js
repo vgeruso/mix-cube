@@ -15,10 +15,17 @@ export default class App extends React.Component {
         const sizeMix = Math.floor(Math.random() * (25 - 15 + 1) + 15);
         const mix = [];
         let stringMoves = "";
+        let lastMov = "";
         for(let i = 0; i < sizeMix; i++) {
             let movement = Math.floor(Math.random() * 18);
-            mix[i] = this.state.movements[movement];
-            stringMoves += " " + mix[i];
+            let mov = this.state.movements[movement]
+            if (lastMov[0] === mov[0]) {
+                lastMov = mov;
+            } else {
+                mix[i] = mov;
+                stringMoves += " " + mix[i];
+                lastMov = mov;
+            }
         }
         return this.setState({
             mixFinal: stringMoves
