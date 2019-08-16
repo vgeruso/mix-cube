@@ -11,8 +11,8 @@ export default class App extends React.Component {
         }
     }
 
-    movDraw() {
-        const sizeMix = Math.floor(Math.random() * (25 - 15 + 1) + 15);
+    handleMoves() {
+        const sizeMix = Math.floor(Math.random() * (30 - 20 + 1) + 20);
         const mix = [];
         let stringMoves = "";
         let lastMov = "";
@@ -36,7 +36,7 @@ export default class App extends React.Component {
         const mix = () => {
             if(this.state.mixFinal === "") {
                 return (
-                    <p className="p-mod">"Press 'Mix' to draw the mix sequence"</p>
+                    <p className="p-mod">Press 'Mix' to show the move sequence</p>
                 );
             } else {
                 return (
@@ -49,7 +49,7 @@ export default class App extends React.Component {
             <div className="card" id="cardMix">
                 <div className="card-body">
                     {mix()}
-                    <button type="button" className="btn btn-primary btn-lg btn-block" onClick={() => this.movDraw()}>Mix</button>
+                    <button type="button" className="btn btn-primary btn-lg btn-block" onClick={() => this.handleMoves()}>Mix</button>
                 </div>
             </div>
         );
