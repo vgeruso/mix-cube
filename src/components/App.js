@@ -11,7 +11,7 @@ export default class App extends React.Component {
         }
     }
 
-    handleMoves() {
+    mountMoves() {
         const sizeMix = Math.floor(Math.random() * (30 - 20 + 1) + 20);
         const mix = [];
         let stringMoves = "";
@@ -27,8 +27,13 @@ export default class App extends React.Component {
                 lastMov = mov;
             }
         }
+        return stringMoves
+    }
+
+    handleMix() {
+        const moves = this.mountMoves();
         return this.setState({
-            mixFinal: stringMoves
+            mixFinal: moves
         });
     }
 
@@ -49,7 +54,7 @@ export default class App extends React.Component {
             <div className="card" id="cardMix">
                 <div className="card-body">
                     {mix()}
-                    <button type="button" className="btn btn-primary btn-lg btn-block" onClick={() => this.handleMoves()}>Mix</button>
+                    <button type="button" className="btn btn-primary btn-lg btn-block" onClick={() => this.handleMix()}>Mix</button>
                 </div>
             </div>
         );
