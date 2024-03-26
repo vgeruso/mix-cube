@@ -33,11 +33,23 @@ const IndexPage = () => {
     const sizeMix = Math.floor(Math.random() * (25 - 15 + 1) + 15);
     const mix = [];
     let stringMoves = '';
+    let moveAux = 0;
+    let auxBaseMove = [''];
+
     for (let i = 0; i < sizeMix; i++) {
       let movement = Math.floor(Math.random() * 18);
-      mix[i] = movements[movement];
-      stringMoves += ' ' + mix[i];
+
+      if (!(auxBaseMove === movements[movement].split('')[0])) {
+        if (!(moveAux === movement)) {
+          mix[i] = movements[movement];
+          stringMoves += ' ' + mix[i];
+        }
+      }
+
+      auxBaseMove = movements[movement].split('')[0];
+      moveAux = movement;
     }
+
     setMixFinal(stringMoves);
   };
 
